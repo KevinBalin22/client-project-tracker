@@ -17,6 +17,18 @@ A small full-stack app for a digital agency to track client projects: their stat
 - Responsive layout: a table on desktop, cards on mobile
 - Loading, empty, error and "no results" states, plus success notices
 
+## Assumptions
+
+- **REQUIREMENTS.md is the source of truth.** The assessment README describes a "Task Management" app, but REQUIREMENTS.md specifies a Client Project Tracker in detail, so that is what was built.
+- **Only client name and project name are required.** Description, start date and due date are optional, since a project in "Planning" may not have dates yet. Status and priority are required and must be one of the listed values (case-sensitive, spelled exactly as in the spec).
+- **A due date on the same day as the start date is valid.** "Cannot be earlier than" allows equal dates. The rule only applies when both dates are set.
+- **Dates are calendar dates** (`YYYY-MM-DD`) with no time or time zone.
+- **`PUT` is a full replacement.** It takes the same body as `POST`; partial updates (`PATCH`) are not part of the spec.
+- **Endpoints live at `/projects`**, exactly as written in the spec, not under an `/api` prefix.
+- **`test_data.json` defines the API shape**, so request and response fields are camelCase.
+- **A single-user internal tool.** No authentication or per-user data, since the spec lists auth as optional.
+- **"Overdue"** means the due date has passed and the status is not "Completed".
+
 ---
 
 ## Requirements
@@ -211,6 +223,3 @@ frontend/src/
 - **Docker:** not included. Laravel Sail or a small `docker-compose.yml` (PHP, MySQL, Node) would make setup one command.
 - **Optimistic updates** for delete and edit, to make the UI feel faster.
 
-## AI Usage Disclosure
-
-I used AI assistance (Claude Code) while building this project for scaffolding, drafting code and tests, and writing documentation. I reviewed, ran and tested all of the code, and I can explain and defend every decision described above.
